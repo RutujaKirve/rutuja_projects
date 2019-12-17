@@ -112,28 +112,20 @@ export default class Pushlist extends React.Component {
         console.error(error);
       });
   }
-  SetArray = async (title, title2, url) => {
+  SetArray = async title => {
     const array = [title];
-    const title1 = title2;
-    const url3 = url;
-
-    /*  await AsyncStorage.getItem('savedIds', (err, result) => {
-        const id = [1];
-        if (result !== null) {
-          console.log('Data Found', result);
-          newIds = JSON.parse(result).concat(array);
-          AsyncStorage.setItem('savedIds', JSON.stringify(newIds));
-        } else {
-          console.log('Data Not Found');
-          AsyncStorage.setItem('savedIds', JSON.stringify(array));
-        }
-        */
-
-    this.props.navigation.navigate('Getdetail', {
-      url1: title,
-      text1: title2,
-      url2: url,
+    await AsyncStorage.getItem('savedIds', (err, result) => {
+      const id = [1];
+      if (result !== null) {
+        console.log('Data Found', result);
+        newIds = JSON.parse(result).concat(array);
+        AsyncStorage.setItem('savedIds', JSON.stringify(newIds));
+      } else {
+        console.log('Data Not Found');
+        AsyncStorage.setItem('savedIds', JSON.stringify(array));
+      }
     });
+    this.props.navigation.navigate('Getdetail');
   };
   render() {
     return (
@@ -142,14 +134,11 @@ export default class Pushlist extends React.Component {
           data={this.state.dataSource}
           renderItem={({item}) => (
             <View style={{padding: 10, justifyContent: 'center', flex: 1}}>
-              <TouchableOpacity
-                onPress={() =>
-                  this.SetArray(item.url, item.title, item.thumbnailUrl)
-                }>
+              <TouchableOpacity onPress={() => this.SetArray(item.url)}>
                 <View style={styles.MainContainer}>
                   <Image
                     source={{uri: item.thumbnailUrl}}
-                    style={{height: 100, width: 100, justifyContent: 'center'}}
+                    style={{height: 100, width: 100}}
                   />
                 </View>
               </TouchableOpacity>

@@ -10,6 +10,7 @@ import React from 'react';
 import PostApi from './src/Scrrens/Image';
 import Pushimage from './src/Scrrens/Pushimage';
 import Getimage from './src/Scrrens/Getimage';
+import GetDetail from './src/Scrrens/GetDetail';
 import PostApi2 from './Pushlist';
 import Listrealm from './Listrl';
 import List2 from './List2';
@@ -41,6 +42,7 @@ const AppNavigator = createStackNavigator(
     Get2: PostApi2,
     Pushimage: Pushimage,
     Getimage: Getimage,
+    Getdetail: GetDetail,
     Listrealm: Listrealm,
     List2: List2,
     Try: Try,
